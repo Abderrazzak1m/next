@@ -4,20 +4,20 @@ pipeline {
   stages  {
     stage("build") {
       steps  {
-        echo "building the app ..."
+        docker build -t next .
       }
     }
-    stage("test") {
+    stage("run") {
       steps  {
-        echo "testing the app ..."
+        docker run -d -p 3000:3000 --name next next
 
       }
     }
-    stage("deploy") {
-      steps  {
-        echo "deploying the app ..."
-      }
-    }
+    // stage("deploy") {
+    //   steps  {
+    //     echo "deploying the app ..."
+    //   }
+    // }
     
   }
 }
